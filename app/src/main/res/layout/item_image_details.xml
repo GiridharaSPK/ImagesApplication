@@ -14,8 +14,9 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/_2sdp"
         android:textColor="@color/teal_700"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="@dimen/_14sdp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +31,7 @@
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/_80sdp"
+        android:maxHeight="@dimen/_100sdp"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <TextView
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:gravity="start"
         android:singleLine="false"
+        android:textSize="@dimen/_13sdp"
         app:layout_constraintTop_toBottomOf="@id/ivImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
