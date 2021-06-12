@@ -1,10 +1,13 @@
 package com.giridharaspk.imagesapplication.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.giridharaspk.imagesapplication.data.repository.DataRepository
 import com.giridharaspk.imagesapplication.databinding.ActivityMainBinding
+import com.giridharaspk.imagesapplication.ui.adapter.ImagesAdapter
 import com.giridharaspk.imagesapplication.ui.viewmodel.MainViewModel
 import com.giridharaspk.imagesapplication.ui.viewmodel.ViewModelProviderFactory
 
@@ -12,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
+    private lateinit var imageDetailsAdapter: ImagesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +50,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAdapter() {
-        TODO("Not yet implemented")
+        imageDetailsAdapter = ImagesAdapter()
+        imageDetailsAdapter.setImagesList(ArrayList())
+        binding.rvImages.apply {
+            adapter = imageDetailsAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
     }
 
     private fun setObservers() {
@@ -54,11 +63,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showProgress() {
-        TODO("Not yet implemented")
+        binding.shimmerFrameLayout.startShimmer()
+        binding.shimmerFrameLayout.visibility = View.VISIBLE
     }
 
     private fun hideProgress() {
-        TODO("Not yet implemented")
+        binding.shimmerFrameLayout.stopShimmer()
+        binding.shimmerFrameLayout.visibility = View.GONE
     }
 
 }

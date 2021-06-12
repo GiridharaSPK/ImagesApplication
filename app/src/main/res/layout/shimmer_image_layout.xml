@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_3sdp"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:elevation="@dimen/_10sdp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_student_name_title"
+            android:layout_width="150dp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_margin="@dimen/_2sdp"
+            android:background="@color/shimmer_placeholder"
+            app:layout_constraintStart_toEndOf="@+id/item_profile_img" />
+
+        <ImageView
+            android:id="@+id/item_profile_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_margin="@dimen/_2sdp"
+            android:background="@color/shimmer_placeholder"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_student_specialization1"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_margin="@dimen/_2sdp"
+            android:background="@color/shimmer_placeholder"
+            app:layout_constraintStart_toEndOf="@+id/item_profile_img"
+            app:layout_constraintTop_toBottomOf="@+id/item_student_college" />
+
+        <TextView
+            android:id="@+id/item_student_specialization2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_margin="@dimen/_2sdp"
+            android:background="@color/shimmer_placeholder"
+            app:layout_constraintStart_toEndOf="@+id/item_profile_img"
+            app:layout_constraintTop_toBottomOf="@+id/item_student_college" />
+
+    </LinearLayout>
+
+</RelativeLayout>
