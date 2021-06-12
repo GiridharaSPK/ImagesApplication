@@ -11,6 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import timber.log.Timber
+import java.io.IOException
+import java.net.UnknownHostException
 
 class MainViewModel(app: Application, private val dataRepository: DataRepository) :
     AndroidViewModel(app) {
@@ -23,27 +25,27 @@ class MainViewModel(app: Application, private val dataRepository: DataRepository
         try {
             val response = dataRepository.getImages()
             imagesList.postValue(handleImagesResponse(response))
+        } catch (e: UnknownHostException) {
+            imagesList.postValue(ApiResult.NetworkError(e))
+        } catch (e: IOException) {
+            imagesList.postValue(ApiResult.NetworkError(e))
         } catch (e: Exception) {
-            Timber.e(e)
             imagesList.postValue(ApiResult.Error(e))
         }
     }
 
     private fun handleImagesResponse(resp: Response<ApiResponse>): ApiResult<ApiResponse> {
-        return try {
-            if (resp.isSuccessful) {
-                if (resp.body()?.rows?.isNotEmpty() == true) {
-                    Timber.d(resp.body()!!.rows.toString())
-                    ApiResult.Success(resp.body()!!)
-                } else {
-                    ApiResult.Failure("No Data")
-                }
+        return if (resp.isSuccessful) {
+            if (resp.body()?.rows?.isNotEmpty() == true) {
+                Timber.d(resp.body()!!.rows.toString())
+                ApiResult.Success(resp.body()!!)
             } else {
-                ApiResult.Failure(resp.message())
+                ApiResult.Failure("No Data")
             }
-        } catch (e: Exception) {
-            ApiResult.Error(e)
+        } else {
+            ApiResult.Failure(resp.message())
         }
+
     }
 
 
