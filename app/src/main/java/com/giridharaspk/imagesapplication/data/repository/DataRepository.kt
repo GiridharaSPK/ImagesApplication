@@ -5,7 +5,7 @@ import com.giridharaspk.imagesapplication.data.model.response.ApiResponse
 import retrofit2.Response
 import timber.log.Timber
 
-class DataRepository {
+object DataRepository {
     suspend fun getImages(): Response<ApiResponse> {
         Timber.d("getImages REST Api call")
         return RetrofitInstance.api.getLocationDetails()
