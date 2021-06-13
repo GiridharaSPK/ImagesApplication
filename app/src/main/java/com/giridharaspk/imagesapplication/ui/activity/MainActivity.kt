@@ -70,7 +70,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setObservers() {
         viewModel.imagesList.observe(this, Observer {
-            binding.swipeToRefresh.isRefreshing = false
             when (it) {
                 is ApiResult.Loading -> {
                     Timber.d("Loading")
@@ -98,7 +97,8 @@ class MainActivity : AppCompatActivity() {
                 is ApiResult.Failure -> {
                     Timber.d("Failure")
                     hideProgress()
-                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                    val msg = it.message ?: "Something went wrong"
+                    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
                 }
                 is ApiResult.Error -> {
                     Timber.d("Error")
@@ -128,6 +128,7 @@ class MainActivity : AppCompatActivity() {
     private fun hideProgress() {
         binding.shimmerFrameLayout.stopShimmer()
         binding.shimmerFrameLayout.visibility = View.GONE
+        binding.swipeToRefresh.isRefreshing = false
     }
 
 }

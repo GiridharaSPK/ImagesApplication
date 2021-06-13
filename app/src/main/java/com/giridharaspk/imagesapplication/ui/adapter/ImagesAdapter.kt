@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.giridharaspk.imagesapplication.R
 import com.giridharaspk.imagesapplication.data.model.ImageDetails
 import com.giridharaspk.imagesapplication.databinding.ItemImageDetailsBinding
@@ -46,6 +47,7 @@ class ImagesAdapter(private val context: Context) :
             .load(imageReference)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .skipMemoryCache(false)
+            .transition(DrawableTransitionOptions.withCrossFade())
 //            .placeholder(R.drawable.ic_launcher_foreground)
 //            .error(R.drawable.ic_launcher_background)
             .into(imageView)
